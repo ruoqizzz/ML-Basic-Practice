@@ -40,7 +40,7 @@ for i = 1:3
     ax = axes;
     hold on
     for j = 1:n_experiments
-        plot(ax,result{i,j},'LineWidth',2), title(ax,['lr = ',num2str(lr(i))]);
+        plot(ax,result{i,j},'LineWidth',1), title(ax,['lr = ',num2str(lr(i))]);
     end
 end
 
@@ -63,6 +63,29 @@ end
 % trainrp: Rpro
 net = newff(p,t,[2],{'tansig','logsig'},'trainrp','','mse',{},{},'');
 net = init(net);
+net.trainParam.deltamax = 40
 % stats: training record
 [trained_net, stats] = train(net, p, t);
 plot_xor(trained_net);
+
+%% experiment
+n_experiments = 10;
+result = cell(n_experiments, 1);
+
+net = newff(p,t,[2],{'tansig','logsig'},'trainrp','','mse',{},{},'');
+net.trainParam.deltamax = 40
+net.trainParam.epochs = 150
+for i = 1:n_experiments
+    net = init(net);
+    [trained_net, stats] = train(net, p, t);
+    result{i,1} = stats.perf;
+end
+%%
+figure
+ax = axes;
+hold on 
+for i = 1:n_experiments
+    plot(ax,result{i,1},'LineWidth',1), title(ax,'Rprop');
+end
+
+

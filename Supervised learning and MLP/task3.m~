@@ -1,0 +1,67 @@
+%% load data
+clc;
+clear all;
+close all;
+[input, target] =wine_dataset;
+input_size = size(input);
+target_size = size(target);
+setdemorandstream(444000444);
+% 13 Features:
+% Alcohol Malic acid As  Alkalinity of ash
+% Magnesium Total phenols Flavanoids Nonflavanoid phenols
+% Proanthocyanidins Color intensity Hue OD280/OD315 of diluted wines Proline
+
+%% try to find best MLP: number of hidden node
+n_experiments = 42;                % How many experiments to run?
+outputs = cell(n_experiments,1);   % Create cell array for storing results
+for i = 1:n_experiments
+    % vvv Lab instruction code goes here vvv
+    % For example:
+    net = newff(p, t, (2), {'tansig' 'logsig'}, 'traingd', ...
+                '', 'mse', {}, {}, '');
+    net = init(net);    % Note: you have to initialize every loop! (Why?)
+    [trained_net, stats] = train(net, p, t);
+    % ^^^ Lab instruction code goes here ^^^
+    
+    outputs{i} = trained_net; % Store the trained nets at right-hand side
+end
+
+nodes_num = [35 38 40 42 44 45 46 47 48];
+
+for i = 1:size(nodes_num,2)
+    net = newff(input, target, [nodes_num(i)], {'logsig' 'logsig'}, 'traingd', '', 'mse', {}, {}, '');
+    net = init(net);
+    net.trainParam.lr = 0.01;
+    net.trainParam.epochs = 2000;
+    [trained_net, stats] = train(net, input, target);
+    figure, plotconfusion(target, sim(trained_net, input)), title(['number of hidden nodes: ',num2str(nodes_num(i))]);
+end
+
+%% try to find best MLP: Activation function
+n_experiments = 42;                % How many experiments to run?
+outputs = cell(n_experiments,1);   % Create cell array for storing results
+for i = 1:n_experiments
+    % vvv Lab instruction code goes here vvv
+    % For example:
+    net = newff(p, t, (2), {'tansig' 'logsig'}, 'traingd', ...
+                '', 'mse', {}, {}, '');
+    net = init(net);    % Note: you have to initialize every loop! (Why?)
+    [trained_net, stats] = train(net, p, t);
+    % ^^^ Lab instruction code goes here ^^^
+    
+    outputs{i} = trained_net; % Store the trained nets at right-hand side
+end
+
+
+
+%% try to find best MLP: epochs
+ep = [1000, 1100 ,1200, 1300, 1400,1500]
+for i = 1:size(ep,2)
+    net = newff(input, target, [5], {'purelin' 'purelin'}, 'trainrp', '', 'mse', {}, {}, '');
+    net = init(net);
+    net.trainParam.lr = 0.01;
+    net.trainParam.epochs = ep(i);
+    [trained_net, stats] = train(net, input, target);
+    figure, plotconfusion(target, sim(trained_net, input)), title(['epoches ',num2str(ep(i))]);
+end
+
