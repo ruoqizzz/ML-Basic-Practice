@@ -21,7 +21,6 @@ lr = [0.1 2 20]
 ep = [1000 100 30]
 n_experiments = 10;
 result = cell(3,n_experiments);
-outputs = cell(n_experiments,1);   % Create cell array for storing results
 for i = 1:3
     net = newff(p, t, [2], {'tansig' 'logsig'}, 'traingd', ...
                 '', 'mse', {}, {}, '');
