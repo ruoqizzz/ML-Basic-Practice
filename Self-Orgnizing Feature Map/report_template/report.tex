@@ -1,0 +1,125 @@
+\documentclass[oneside,a4paper]{article}
+
+% ========== Preamble (packages, definitions etc.) ==========
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{csquotes}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{lmodern}
+\usepackage{color}
+%\usepackage[backend=bibtex,style=abbrv]{biblatex}
+\newcommand{\todo}[1]{{\color{blue}#1}}  % show to-do items in blue
+\setlength{\parskip}{\baselineskip}
+\usepackage[activate={true,nocompatibility},
+            final,
+            tracking=true,
+            kerning=true,
+            spacing=nonfrench,
+            factor=1100,
+            stretch=10,
+            shrink=10]{microtype}
+\hypersetup{
+    pdftitle={Lab 3 Report: Self-organizing Feature Maps},
+    bookmarks=true,
+    pdfpagemode=FullScreen,
+}
+
+\newcounter{questionnum} \setcounter{questionnum}{0}
+%\newcommand{\question}[1]{%
+%  \refstepcounter{questionnum}%
+%  \paragraph{Question~\arabic{questionnum}:}{\emph{#1}}}
+
+\newcommand\filltoend{\leavevmode{\unskip
+  \leaders\hrule height.5ex depth\dimexpr-.5ex+0.4pt\hfill\hbox{}%
+  \parfillskip=0pt\endgraf}}
+
+\newcommand{\problem}[2]{%
+	\vspace{-0.7em}
+	\hspace{0.02\textwidth}
+	\begin{minipage}[t][][b]{0.95\textwidth}
+		{\bf \hspace{-0.015\textwidth}\makebox[7.5em][l]{{#1} ~~\filltoend}}%
+		\hspace{1.2mm}{\it #2}%
+	\end{minipage}
+}
+
+\def\email#1{{\tt#1}}
+
+\lstset{ % Set the default style for code listings
+	numbers=left,
+	numberstyle=\scriptsize,
+	numbersep=8pt,
+	basicstyle=\scriptsize\ttfamily,
+	keywordstyle=\color{blue},
+	stringstyle=\color{red},
+	commentstyle=\color{green!70!black},
+	breaklines=true,
+	frame=single,
+	language=C,
+	tabsize=4,
+	showstringspaces=false
+}
+
+% ========== Title page ==========
+
+\title{
+	\includegraphics[width=0.6\textwidth]{UU_logo.pdf}\\[1em]
+	Report for Natural Computation Methods for Machine Learning\\[1em]
+	Lab 2: Reinforcement Learning\\[3em]
+	Group NN
+}
+
+\author{
+	Firstname1 Lastname1 \and
+	Firstname2 Lastname2 \and
+	Firstname3 Lastname3
+}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty} % Removes page number for front page
+\pagebreak
+
+% ========== Document contents ==========
+
+\section{Questions}\noindent.
+
+\textbf{Question 1.}
+
+Write your answers here. You can cite like this.\cite{Adams1978} The cite
+reference is in the file \texttt{bibliography.bib}. 
+
+\textbf{Question 2.}
+
+\textbf{Question 3.}
+
+\textbf{Question 4*.}
+
+\pagebreak
+\section{Plots}
+
+% Delete this section if you have no plot to submit.
+% Change the size of the figure by changing the value in [width=300pt]
+
+% Putting \autoref{fig:my_figure} in your text will refer to the corresponding figure label.
+% Eg.: "\autoref{fig:my_figure} clearly shows that the large circle is larger than the small box."
+% Read more about autoref here https://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing#autoref
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=300pt]{placeholder} % Include the image placeholder.png
+        \caption{Figure caption.}
+        \label{fig:my_figure}
+    \end{center}
+\end{figure}
+
+%\bibliographystyle{apalike}
+\bibliographystyle{abbrv}
+\bibliography{bibliography}
+
+\end{document}
