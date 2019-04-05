@@ -2,6 +2,6 @@
 *.pdf
 plot*/
 *report/
-*~
 Reinforcement Learning/cart_pole/
 */images/
+*.png

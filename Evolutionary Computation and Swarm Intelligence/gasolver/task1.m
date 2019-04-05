@@ -1,4 +1,6 @@
 %%
+clear all;
+load lab4.mat;
 star = GAparams
 star.objParams.star = star1;
 [best, fit, stat] = GAsolver(2, [0 20 ; 0 20], 'circle', 50, 100, star);
@@ -8,7 +10,7 @@ press = [2, 1.75, 1.5, 1.25,1];
 best_all = zeros(size(press,2),2);
 fit_all = zeros(size(press,2),1); 
 figure(1)
-for i = 1:size(1,2)
+for i = 1:size(press,2)
     star = GAparams;
     star.objParams.star = star1;
     star.select.func = 'rank';
